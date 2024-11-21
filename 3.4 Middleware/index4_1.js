@@ -9,21 +9,20 @@ var str_band = "";
 
 app.use(express.urlencoded({ extended: true }));
 
-const bandGen = (req,res,next) => {
-  console.log(req.body)
-  str_band = req.body.street +" "+ req.body.pet;
-  // str_band = req.body.["street"] +" "+ req.body.["pet"];
-  next();
-}
-
-app.use(bandGen);
+// const bandGen = (req,res,next) => {
+//   console.log(req.body)
+//   str_band = req.body.street +" "+ req.body.pet;
+//   // str_band = req.body.["street"] +" "+ req.body.["pet"];
+//   next();
+// }
+// app.use(bandGen);
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
-
 app.post('/submit', (req, res) => {
+  str_band = req.body.street +" "+ req.body.pet;
   res.send(`<h1>Your band name is:</h1><h2>🤘🤘🤘${str_band}🤘🤘🤘</h2>`);
   
 });
